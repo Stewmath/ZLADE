@@ -1,0 +1,34 @@
+59:Moldorm
+5C:Genie
+5B:Slime Eye
+65:Angler Fish
+5D:Slime Eel
+5A:Facade
+63:Evil Eagle
+8F:Arm Mimic
+39:Instrument
+20:Hardhat Beetle
+19:Keese
+90:Three of a Kind
+1C:Gel
+29:Mini-Moldorm
+81:Rolling Bones
+82:Miniboss Object
+61:Miniboss Portal
+27:Blade Trap
+17:Spark
+89:Orange Hinox
+42:Owl Statue
+52:Ground Vacuum
+18:Pols Voice
+1B:Zol
+66:Block Switch
+50:Boo
+E5:Floating Heart/Arrows
+86:Floating Magic/Bombs
+2D:Heart
+16:Spark
+2E:Rupee
+0B:Hooded Stalfos/Blue Warrior
+2F:Fairy
+62:Hothead
