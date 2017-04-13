@@ -1,0 +1,20 @@
+dump=(V1.0) (U) [C][!]
+end
+dump=(V1.1+) (U) [C][!]
+chestx=9f10
+chesty=9f0c
+stairsx=9f89
+stairsy=9f81
+keyx=9462
+keyy=9478
+chestpoofx=9dfd
+chestpoofy=9eeb
+ominimaptile=81697
+ominimappal=81797
+dminimap=A49A
+droomindex=50220
+tileanim=1bd0
+tile1loc=82e7b
+itile1loc=830bb
+itile2loc=82ebb
+end

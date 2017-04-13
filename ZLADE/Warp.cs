@@ -15,6 +15,7 @@ namespace ZLADE
 		public int room = 0;
 		public int x = 0;
 		public int y = 0;
+		public int after = 0;
 
 		public static MapType getMapType(int i)
 		{

@@ -12,6 +12,7 @@ namespace ZLADE
 		MapLoader loader;
 		public int room = 0;
 		public int level = 1;
+		public bool indoor = false;
 		public frmRepoint(MapLoader m)
 		{
 			InitializeComponent();
@@ -36,20 +37,47 @@ namespace ZLADE
 			string b2 = a.Substring(a.Length - 4, 2);
 			int byte1 = Convert.ToInt32(b1, 16);
 			int byte2 = Convert.ToInt32(b2, 16);
-			if(byte2 >= 0x40)
+			while(byte2 > 0x7F)
 				byte2 -= 0x40;
+			while (byte2 < 0x40)
+				byte2 += 0x40;
 			byte[] b = { (byte)byte1, (byte)byte2 };
 			return b;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			loader.dataLocation = (long)nAddress.Value;
-			loader.pointerValues = getPointer(loader.dataLocation);
-			loader.writePointer(level, room);
-			if (cCopy.Checked)
+			if (room != -1)
 			{
-				loader.saveRoomData();
+				if (!indoor)
+				{
+					loader.dataLocation = (long)nAddress.Value;
+					loader.pointerValues = getPointer(loader.dataLocation);
+					loader.writePointer(level, room);
+					if (cCopy.Checked)
+					{
+						loader.saveRoomData();
+					}
+				}
+				else
+				{
+					loader.iDataLocation = (long)nAddress.Value;
+					byte[] b = getPointer((long)nAddress.Value);
+					loader.writeIPointer(level, room, b[0], b[1]);
+					if (cCopy.Checked)
+					{
+						loader.saveIRoomData();
+					}
+				}
+			}
+			else
+			{
+				loader.oDataLocation = (long)nAddress.Value;
+				loader.writeOPointer(getPointer(loader.oDataLocation));
+				if (cCopy.Checked)
+				{
+					loader.saveOverworld();
+				}
 			}
 			this.Close();
 		}

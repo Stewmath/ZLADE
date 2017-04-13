@@ -32,3 +32,5 @@ E5:Floating Heart/Arrows
 0B:Hooded Stalfos/Blue Warrior
 2F:Fairy
 62:Hothead
+09:Red Warrior/Octorok
+3F:Talon/Raccoon

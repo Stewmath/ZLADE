@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DungeonTilesetLoader.cs" />
+    <Compile Include="DuoTile.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -68,6 +70,12 @@
     </Compile>
     <Compile Include="frmChest.Designer.cs">
       <DependentUpon>frmChest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDump.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDump.Designer.cs">
+      <DependentUpon>frmDump.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEvent.cs">
       <SubType>Form</SubType>
@@ -99,6 +107,18 @@
     <Compile Include="frmNameEditor.Designer.cs">
       <DependentUpon>frmNameEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOMinimapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOMinimapEditor.Designer.cs">
+      <DependentUpon>frmOMinimapEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOTileset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOTileset.Designer.cs">
+      <DependentUpon>frmOTileset.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPalette.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,9 +137,12 @@
     <Compile Include="frmSpriteRepoint.Designer.cs">
       <DependentUpon>frmSpriteRepoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="IndoorTilesetLoader.cs" />
+    <Compile Include="LoadedOffset.cs" />
     <Compile Include="mapDumper.cs" />
     <Compile Include="MapLoader.cs" />
     <Compile Include="MinimapSelector.cs" />
+    <Compile Include="OffsetLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -127,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChest.resx">
       <DependentUpon>frmChest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDump.resx">
+      <DependentUpon>frmDump.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEvent.resx">
       <DependentUpon>frmEvent.cs</DependentUpon>
@@ -142,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNameEditor.resx">
       <DependentUpon>frmNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOMinimapEditor.resx">
+      <DependentUpon>frmOMinimapEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOTileset.resx">
+      <DependentUpon>frmOTileset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPalette.resx">
       <DependentUpon>frmPalette.cs</DependentUpon>
@@ -174,8 +206,18 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="ThreeByteTile.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="TilesetLoader.cs" />
     <Compile Include="TwoByteTile.cs" />
     <Compile Include="Warp.cs" />
+    <None Include="DoorCombos.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ObjectCombos.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Sprites.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Images\DX 1 DTileset.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -213,6 +255,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Images\DX 8 Tileset.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\DX 9 Tileset.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Images\DX Entrances.bmp">
@@ -998,120 +1043,400 @@
     <None Include="Images\Overworld Tilesets\99.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Images\Sprites\0.PNG" />
-    <None Include="Images\Sprites\1.PNG" />
-    <None Include="Images\Sprites\10.PNG" />
-    <None Include="Images\Sprites\11.PNG" />
-    <None Include="Images\Sprites\12.PNG" />
-    <None Include="Images\Sprites\13.PNG" />
-    <None Include="Images\Sprites\14.PNG" />
-    <None Include="Images\Sprites\15.PNG" />
-    <None Include="Images\Sprites\16.PNG" />
-    <None Include="Images\Sprites\17.PNG" />
-    <None Include="Images\Sprites\18.PNG" />
-    <None Include="Images\Sprites\19.PNG" />
-    <None Include="Images\Sprites\1A.PNG" />
-    <None Include="Images\Sprites\1B.PNG" />
-    <None Include="Images\Sprites\1C.PNG" />
-    <None Include="Images\Sprites\1D.PNG" />
-    <None Include="Images\Sprites\1E.PNG" />
-    <None Include="Images\Sprites\1F.PNG" />
-    <None Include="Images\Sprites\2.PNG" />
-    <None Include="Images\Sprites\20.PNG" />
-    <None Include="Images\Sprites\21.PNG" />
-    <None Include="Images\Sprites\22.PNG" />
-    <None Include="Images\Sprites\23.PNG" />
-    <None Include="Images\Sprites\24.PNG" />
-    <None Include="Images\Sprites\25.PNG" />
-    <None Include="Images\Sprites\26.PNG" />
-    <None Include="Images\Sprites\27.PNG" />
-    <None Include="Images\Sprites\29.PNG" />
-    <None Include="Images\Sprites\2A.PNG" />
-    <None Include="Images\Sprites\2C.PNG" />
-    <None Include="Images\Sprites\2D.PNG" />
-    <None Include="Images\Sprites\2E.PNG" />
-    <None Include="Images\Sprites\2F.PNG" />
-    <None Include="Images\Sprites\3.PNG" />
-    <None Include="Images\Sprites\37.PNG" />
-    <None Include="Images\Sprites\38.PNG" />
-    <None Include="Images\Sprites\39.PNG" />
-    <None Include="Images\Sprites\4.PNG" />
-    <None Include="Images\Sprites\42.PNG" />
-    <None Include="Images\Sprites\46.PNG" />
-    <None Include="Images\Sprites\47.PNG" />
-    <None Include="Images\Sprites\48.PNG" />
-    <None Include="Images\Sprites\49.PNG" />
-    <None Include="Images\Sprites\5.PNG" />
-    <None Include="Images\Sprites\50.PNG" />
-    <None Include="Images\Sprites\52.PNG" />
-    <None Include="Images\Sprites\53.PNG" />
-    <None Include="Images\Sprites\55.PNG" />
-    <None Include="Images\Sprites\56.PNG" />
-    <None Include="Images\Sprites\57.PNG" />
-    <None Include="Images\Sprites\59.PNG" />
-    <None Include="Images\Sprites\5A.PNG" />
-    <None Include="Images\Sprites\5B.PNG" />
-    <None Include="Images\Sprites\5C.PNG" />
-    <None Include="Images\Sprites\5D.PNG" />
-    <None Include="Images\Sprites\5E.PNG" />
-    <None Include="Images\Sprites\5F.PNG" />
-    <None Include="Images\Sprites\6.PNG" />
-    <None Include="Images\Sprites\60.PNG" />
-    <None Include="Images\Sprites\61.PNG" />
-    <None Include="Images\Sprites\62.PNG" />
-    <None Include="Images\Sprites\63.PNG" />
-    <None Include="Images\Sprites\65.PNG" />
-    <None Include="Images\Sprites\66.PNG" />
-    <None Include="Images\Sprites\69.PNG" />
-    <None Include="Images\Sprites\7.PNG" />
-    <None Include="Images\Sprites\7A.PNG" />
-    <None Include="Images\Sprites\8.PNG" />
-    <None Include="Images\Sprites\81.PNG" />
-    <None Include="Images\Sprites\82.PNG" />
-    <None Include="Images\Sprites\86.PNG" />
-    <None Include="Images\Sprites\89.PNG" />
-    <None Include="Images\Sprites\8A.PNG" />
-    <None Include="Images\Sprites\8B.PNG" />
-    <None Include="Images\Sprites\8E.PNG" />
-    <None Include="Images\Sprites\8F.PNG" />
-    <None Include="Images\Sprites\9.PNG" />
-    <None Include="Images\Sprites\90.PNG" />
-    <None Include="Images\Sprites\91.PNG" />
-    <None Include="Images\Sprites\92.PNG" />
-    <None Include="Images\Sprites\98.PNG" />
-    <None Include="Images\Sprites\99.PNG" />
-    <None Include="Images\Sprites\9A.PNG" />
-    <None Include="Images\Sprites\9B.PNG" />
-    <None Include="Images\Sprites\9C.PNG" />
-    <None Include="Images\Sprites\9D.PNG" />
-    <None Include="Images\Sprites\9E.PNG" />
-    <None Include="Images\Sprites\9F.PNG" />
-    <None Include="Images\Sprites\A.PNG" />
-    <None Include="Images\Sprites\A0.PNG" />
-    <None Include="Images\Sprites\A1.PNG" />
-    <None Include="Images\Sprites\A2.PNG" />
-    <None Include="Images\Sprites\A3.PNG" />
-    <None Include="Images\Sprites\A4.PNG" />
-    <None Include="Images\Sprites\A5.PNG" />
-    <None Include="Images\Sprites\A7.PNG" />
-    <None Include="Images\Sprites\B.PNG" />
-    <None Include="Images\Sprites\B1.PNG" />
-    <None Include="Images\Sprites\BC.PNG" />
-    <None Include="Images\Sprites\BD.PNG" />
-    <None Include="Images\Sprites\BE.PNG" />
-    <None Include="Images\Sprites\C.PNG" />
-    <None Include="Images\Sprites\C5.PNG" />
-    <None Include="Images\Sprites\D.PNG" />
-    <None Include="Images\Sprites\D6.PNG" />
-    <None Include="Images\Sprites\D7.PNG" />
-    <None Include="Images\Sprites\DA.PNG" />
-    <None Include="Images\Sprites\E.PNG" />
-    <None Include="Images\Sprites\E5.PNG" />
-    <None Include="Images\Sprites\F.PNG" />
-    <None Include="ObjectCombos.txt">
+    <None Include="Images\Sprites\0.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Sprites.txt">
+    <None Include="Images\Sprites\1.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\10.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\11.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\12.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\13.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\14.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\15.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\16.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\17.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\18.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\19.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1B.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\1F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\20.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\21.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\22.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\23.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\24.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\25.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\26.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\27.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\29.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\2F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\3.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\31.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\35.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\37.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\38.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\39.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\3D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\3E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\3F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\4.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\41.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\42.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\46.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\47.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\48.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\49.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\50.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\52.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\53.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\55.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\56.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\57.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\59.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5B.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\5F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\6.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\60.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\61.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\62.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\63.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\65.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\66.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\69.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\6C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\6D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\6E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\6F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\7.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\78.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\79.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\7A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\7C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\7E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\8.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\81.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\82.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\84.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\86.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\89.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\8A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\8B.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\8E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\8F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\90.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\91.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\92.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\98.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\99.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9B.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\9F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A0.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A1.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A2.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A3.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A4.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A5.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\A7.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\AE.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\B.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\B1.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\B9.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\BA.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\BC.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\BD.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\BE.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\C.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\C5.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\CC.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\CD.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\D.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\D6.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\D7.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\DA.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\E.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\E0.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\E5.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Sprites\F.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VersionOffsets.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -1144,9 +1469,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

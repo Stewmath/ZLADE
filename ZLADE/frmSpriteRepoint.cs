@@ -13,11 +13,14 @@ namespace ZLADE
 		MapLoader m;
 		public int room = 0;
 		public int level = 1;
-		public frmSpriteRepoint(MapLoader l)
+		public bool indoor = false;
+		Form1 frm;
+		public frmSpriteRepoint(MapLoader l, Form1 f)
 		{
 			InitializeComponent();
 			m = l;
 			nAddress.Maximum = 0x100000;
+			frm = f;
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -32,20 +35,57 @@ namespace ZLADE
 			string b2 = a.Substring(a.Length - 4, 2);
 			int byte1 = Convert.ToInt32(b1, 16);
 			int byte2 = Convert.ToInt32(b2, 16);
-			if (byte2 >= 0x40)
+			while (byte2 > 0x7F)
 				byte2 -= 0x40;
+			while (byte2 < 0x40)
+				byte2 += 0x40;
 			byte[] b = { (byte)byte1, (byte)byte2 };
 			return b;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			m.spriteLocation = (long)nAddress.Value;
-			m.spritePointer = getPointer(m.spriteLocation);
-			m.writeSpritePointer(level, room);
-			if (cCopy.Checked)
+			if (level != -1)
 			{
-				m.saveRoomData();
+				if (!indoor)
+				{
+					m.spriteLocation = (long)nAddress.Value;
+					m.spritePointer = getPointer(m.spriteLocation);
+					m.writeSpritePointer(level, room);
+					if (cCopy.Checked)
+					{
+						m.saveRoomData();
+					}
+					m.openRom();
+					m.sprites = new List<Sprite>();
+					m.readSprites(level, room + (level > 6 ? 0x100 : 0));
+					m.closeRom();
+					frm.pMap.Invalidate();
+				}
+				else
+				{
+					m.iSpriteLocation = (long)nAddress.Value;
+					byte[] p = getPointer((long)nAddress.Value);
+					m.writeISpritePointer(level, room, p[0], p[1]);
+					if (cCopy.Checked)
+					{
+						m.saveIRoomData();
+					}
+					frm.loadIndoorRoom(level, room);
+					frm.pIMap.Invalidate();
+				}
+			}
+			else
+			{
+				m.oSpriteLocation = (long)nAddress.Value;
+				byte[] pp = getPointer((long)nAddress.Value);
+				m.writeOSpritePointer(pp[0], pp[1]);
+				if (cCopy.Checked)
+				{
+					m.saveOverworld();
+				}
+				frm.loadOverworldMap(room);
+				frm.pOMap.Invalidate();
 			}
 			this.Close();
 		}

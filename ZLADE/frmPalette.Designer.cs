@@ -206,7 +206,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.NumericUpDown nIndex;
 		private System.Windows.Forms.Label label5;
+		public System.Windows.Forms.NumericUpDown nIndex;
 	}
 }
